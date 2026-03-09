@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WRWDH6KN');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bay Area Surf Lessons — Pacifica, San Francisco &amp; Marin County</title>
+  <meta name="description" content="Find the best surf lesson companies in Pacifica, San Francisco, and Marin County. Browse local schools, camps, and instructors for every skill level.">
+  <link rel="icon" type="image/png" href="images/logo/SF Logo black.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── SURF LESSONS PAGE ── */
+
+    .sl-hero {
+      background: var(--deep);
+      color: var(--white);
+      padding: 7rem 4rem 5rem;
+      text-align: center;
+    }
+
+    .sl-hero .section-label {
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+
+    .sl-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .sl-hero .subheadline {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      color: var(--sand);
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sl-hero .intro {
+      max-width: 700px;
+      margin: 0 auto;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #c8dde8;
+    }
+
+    /* Sticky region nav */
+    .sl-region-nav {
+      position: sticky;
+      top: 60px;
+      z-index: 90;
+      background: #f5efe8;
+      border-bottom: 1px solid #e0d4c4;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sl-region-nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a4a3a;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-right: 1px solid #e0d4c4;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sl-region-nav a:first-child { border-left: 1px solid #e0d4c4; }
+
+    .sl-region-nav a:hover,
+    .sl-region-nav a.active {
+      background: var(--deep);
+      color: var(--sand);
+    }
+
+    /* Region sections */
+    .sl-region {
+      padding: 5rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sl-region + .sl-region {
+      border-top: 1px solid #e8ddd0;
+    }
+
+    .sl-region-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .sl-region-header .section-label {
+      margin-bottom: 0.5rem;
+    }
+
+    .sl-region-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      letter-spacing: 0.03em;
+      color: var(--deep);
+      margin-bottom: 1rem;
+    }
+
+    .sl-region-subhead {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #4a4035;
+      max-width: 760px;
+      border-left: 3px solid var(--sand);
+      padding-left: 1.25rem;
+    }
+
+    /* Card grid */
+    .sl-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .sl-card {
+      background: #fdf8f3;
+      border: 1px solid #e8ddd0;
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .sl-card:hover {
+      box-shadow: 0 6px 24px rgba(6,30,46,0.1);
+      transform: translateY(-2px);
+    }
+
+    .sl-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--deep);
+      margin-bottom: 0;
+    }
+
+    .sl-card-desc {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #3a3028;
+      flex: 1;
+    }
+
+    .sl-card-divider {
+      border: none;
+      border-top: 1px solid #e8ddd0;
+    }
+
+    .sl-card-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.67rem;
+      color: #6a5a4a;
+      line-height: 2;
+      letter-spacing: 0.02em;
+    }
+
+    .sl-card-meta span {
+      display: block;
+    }
+
+    .sl-card-link {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--ocean);
+      text-decoration: none;
+      border-bottom: 1px solid var(--wave);
+      padding-bottom: 1px;
+      align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .sl-card-link:hover {
+      color: var(--deep);
+      border-color: var(--deep);
+    }
+
+    /* Footer band */
+    .sl-footer-band {
+      background: var(--deep);
+      color: var(--white);
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .sl-footer-band p {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--sand);
+      max-width: 640px;
+      margin: 0 auto 1rem;
+    }
+
+    .sl-footer-band .subtext {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #7aA0b4;
+      font-style: normal;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      .sl-hero { padding: 5rem 1.5rem 3.5rem; }
+      .sl-region { padding: 3.5rem 1.5rem; }
+      .sl-region-nav a { padding: 0.85rem 1rem; font-size: 0.62rem; }
+      .sl-card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRWDH6KN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="sl-hero">
+  <p class="section-label">Surf Lessons</p>
+  <h1>Learn to Surf in the Bay Area</h1>
+  <p class="subheadline">From Pacifica to Bolinas, the Northern California coast has some of the best beginner surf on the West Coast — and the instructors to match.</p>
+  <p class="intro">Whether you're catching your first wave at Linda Mar or finally committing to regular sessions at Stinson Beach, this guide covers every surf school, camp, and instructor operating across Pacifica, San Francisco, and Marin County. All skill levels, all ages, year-round.</p>
+</div>
+
+<!-- STICKY REGION NAV -->
+<nav class="sl-region-nav">
+  <a href="#pacifica">Pacifica</a>
+  <a href="#san-francisco">San Francisco</a>
+  <a href="#marin">Marin County</a>
+</nav>
+
+<!-- PACIFICA -->
+<div id="pacifica" class="sl-region">
+  <div class="sl-region-header">
+    <p class="section-label">Region</p>
+    <h2>Pacifica</h2>
+    <p class="sl-region-subhead">Linda Mar Beach is the Bay Area's most beginner-friendly break — protected, consistent, and just 15 minutes from San Francisco. It's home to the highest concentration of surf schools in the region.</p>
+  </div>
+
+  <div class="sl-card-grid">
+
+    <div class="sl-card">
+      <h3>Adventure Out Surf Lessons</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">The Bay Area's only NSSIA-accredited surf school. Adventure Out runs beginner and multi-day clinics at Linda Mar Beach with lifeguard-certified instructors, all gear included, and a maximum 4:1 student-to-instructor ratio. Classes cover ocean awareness, wave etiquette, paddling, pop-up technique, and water safety before hitting the waves. Ideal for total beginners through advanced beginners, ages 13 and up. Private and group options available 365 days a year.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 5000 Pacific Coast Hwy, Pacifica, CA 94044</span>
+        <span>📞 (800) 509-3954</span>
+      </div>
+      <a href="https://www.adventureout.com/surf" target="_blank" class="sl-card-link">adventureout.com/surf →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Nor Cal Surf Shop</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">A well-loved local surf shop steps from Linda Mar Beach that runs affordable group, semi-private, and private lessons alongside board and wetsuit rentals. Staff are knowledgeable, laid-back, and great with first-timers. Group lessons start at $94/person; private 1-on-1 lessons are $199. One of the most accessible entry points for anyone wanting to try surfing without a big commitment.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 5440 Pacific Coast Hwy, Pacifica, CA 94044</span>
+        <span>📞 (650) 738-9283</span>
+      </div>
+      <a href="https://www.norcalsurfshop.com" target="_blank" class="sl-card-link">norcalsurfshop.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Surf Camp Pacifica</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">A kids-focused surf and skate camp operating at Linda Mar Beach. Campers spend mornings in the water learning to surf and afternoons on the onsite skate park. Counselors are praised for their energy and patience, and kids regularly return summer after summer. Summer camp format; weekday morning sessions.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 5200 Coast Hwy, Pacifica, CA 94044</span>
+        <span>📞 (650) 758-7873</span>
+      </div>
+      <a href="https://www.surfcamppacifica.com" target="_blank" class="sl-card-link">surfcamppacifica.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Sonlight Surf Shop</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">One of Pacifica's most trusted local surf shops, Sonlight is the go-to spot for board and wetsuit rentals before heading to Linda Mar. Staff help beginners find the right board for their size and experience level, and rentals run around $40 — making it one of the most affordable ways to get in the water. A short walk to the break.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 575 Crespi Dr #1, Pacifica, CA 94044</span>
+        <span>📞 (650) 359-5471</span>
+      </div>
+      <a href="https://www.sonlightsurfshop.com" target="_blank" class="sl-card-link">sonlightsurfshop.com →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- SAN FRANCISCO -->
+<div id="san-francisco" class="sl-region">
+  <div class="sl-region-header">
+    <p class="section-label">Region</p>
+    <h2>San Francisco</h2>
+    <p class="sl-region-subhead">Ocean Beach is San Francisco's main surf spot — powerful, moody, and best suited to intermediate and experienced surfers. These companies operate in SF proper and connect students with vetted local coaches.</p>
+  </div>
+
+  <div class="sl-card-grid">
+
+    <div class="sl-card">
+      <h3>HOKALI Surf School</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">A surf lessons marketplace that connects students with vetted local coaches for private solo sessions, group lessons, couple lessons, and surf camps. All levels covered from first-timers to advanced. Gear is available as an add-on, insurance is included, and post-lesson video tutorials are provided. For every lesson booked, HOKALI donates to local ocean conservation nonprofits. Lessons primarily at Ocean Beach and Linda Mar in Pacifica.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 1986 47th Ave, San Francisco, CA 94116</span>
+        <span>📞 (415) 707-2892</span>
+      </div>
+      <a href="https://www.hokali.co" target="_blank" class="sl-card-link">hokali.co →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Joey's Surf Lessons</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">Personal, one-on-one instruction from Joey — a surfer since age 8 with a focused approach to ocean safety and technical skill-building. Lessons take place at Ocean Beach and surrounding SF breaks. Joey is known for being communicative and encouraging, with concrete feedback that helps both returning and first-time surfers build real confidence in the water.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 3847 Judah St, San Francisco, CA 94122</span>
+        <span>📞 (707) 861-2291</span>
+      </div>
+      <a href="https://www.yelp.com/search?find_desc=Joey%27s+Surf+Lessons&find_loc=San+Francisco%2C+CA" target="_blank" class="sl-card-link">Book via Yelp →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MARIN COUNTY -->
+<div id="marin" class="sl-region">
+  <div class="sl-region-header">
+    <p class="section-label">Region</p>
+    <h2>Marin County</h2>
+    <p class="sl-region-subhead">Stinson Beach and Bolinas are Marin's premier surf spots — sheltered, consistent, and beautiful. Bolinas in particular is one of the best beginner breaks in all of Northern California, tucked inside a large peninsula that keeps waves small and manageable year-round.</p>
+  </div>
+
+  <div class="sl-card-grid">
+
+    <div class="sl-card">
+      <h3>Marin Outdoor Adventure</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">A women-owned operation led by instructor Nicki Clark — a Marin native and one of the most respected surf coaches in the area. Offers private lessons, group sessions, women's surf clinics, and multi-session packages for all levels ages 5 and up. Lessons run 1.5 hours at Stinson Beach or Bolinas depending on conditions and skill level. The women's Friday morning surf group is a community highlight.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 3419 CA-1, Stinson Beach, CA 94970</span>
+        <span>📞 (415) 322-0034</span>
+      </div>
+      <a href="https://www.marinoutdooradventure.com" target="_blank" class="sl-card-link">marinoutdooradventure.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Bolinas Surf Lessons</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">Run by instructor Nick Krieger out of Bolinas, this is one of the most highly-reviewed lesson operations in the Bay Area. Nick's approach goes beyond technique — he teaches students to read conditions, understand currents, and develop real ocean awareness. Private and small group lessons available. Bolinas is an ideal learning beach: small consistent waves, minimal crowds, stunning scenery.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 100 Brighton Ave, Bolinas, CA 94924</span>
+        <span>📞 (415) 847-5489</span>
+      </div>
+      <a href="https://www.surfbolinas.com" target="_blank" class="sl-card-link">surfbolinas.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Pacific Coast Surf Lessons</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">Year-round lessons, classes, and camps for all ages out of Bolinas, with both male and female instructors on staff. Founder Nick O'Connor is known for thorough, safety-first instruction that gets students standing on their boards during their very first session. Great for families, kids, and adults learning together.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 99 Brighton Ave, Bolinas, CA 94924</span>
+        <span>📞 (415) 302-2908</span>
+      </div>
+      <a href="https://www.pacificcoastsurflessons.com" target="_blank" class="sl-card-link">pacificcoastsurflessons.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Stinson Beach Surf Camp</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">Private and group surf lessons for all ages and skill levels at Stinson Beach and Bolinas. Classes run 2 hours right on the beach, with wetsuits and surfboards provided. Run by instructor Tommy Glavey, who is especially well-regarded for his patience with young and first-time surfers.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 3605 Shoreline Hwy, Stinson Beach, CA 94970</span>
+        <span>📞 (415) 688-1496</span>
+      </div>
+      <a href="https://www.stinsonbeachsurfcamp.com" target="_blank" class="sl-card-link">stinsonbeachsurfcamp.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Big Dog Surf Camp</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">A kids' surf camp based out of Mill Valley (Proof Lab) that travels to Muir Beach, Stinson, or Bolinas each day based on conditions and tides. Kids are dropped off at Tam Junction in the morning and returned in the afternoon. Run by Ian Glover, the camp is beloved by repeat campers ages 6–12 and praised for its tight-knit community feel.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 254 Shoreline Hwy, Mill Valley, CA 94941</span>
+        <span>📞 (415) 518-3805</span>
+      </div>
+      <a href="https://www.bigdogsurfcamp.com" target="_blank" class="sl-card-link">bigdogsurfcamp.com →</a>
+    </div>
+
+    <div class="sl-card">
+      <h3>Saltwater Surf Adventures</h3>
+      <hr class="sl-card-divider">
+      <p class="sl-card-desc">Offers private lessons, group sessions, and kids surf camps at both Stinson Beach and Bolinas. Lessons include land-based instruction, ocean safety, and hands-on practice covering paddling, popping up, and riding waves. Known for high-energy, kid-friendly coaching and strong safety standards.</p>
+      <hr class="sl-card-divider">
+      <div class="sl-card-meta">
+        <span>📍 Stinson Beach / Bolinas, Marin County</span>
+      </div>
+      <a href="https://www.saltwatersurfadventures.com" target="_blank" class="sl-card-link">saltwatersurfadventures.com →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER BAND -->
+<div class="sl-footer-band">
+  <p>The Bay Area has world-class surf — and no shortage of great teachers to help you find your feet.</p>
+  <p class="subtext">Know a surf school or instructor we missed? Reach out and we'll add them to the list.</p>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/layout.js"></script>
+<script>
+  // Highlight active region nav link on scroll
+  const sections = document.querySelectorAll('.sl-region');
+  const navLinks = document.querySelectorAll('.sl-region-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector(`.sl-region-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
