@@ -37,11 +37,14 @@ nav {
 }
 
 nav .logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  color: var(--sun);
-  letter-spacing: 0.08em;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+nav .logo-img {
+  height: 40px;
+  width: auto;
 }
 
 nav ul {

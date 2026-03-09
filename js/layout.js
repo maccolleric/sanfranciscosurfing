@@ -1,10 +1,8 @@
 // Shared navigation HTML
 const navHTML = `
 <nav>
-  <a class="logo" href="index.html">SF Surfing</a>
+  <a class="logo" href="index.html"><img src="images/logo/SF Logo white.png" alt="SF Surfing" class="logo-img"></a>
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#learn">Learn To Surf</a></li>
     <li>
       <a href="#">Surf Spots ▾</a>
       <div class="dropdown">
@@ -14,8 +12,10 @@ const navHTML = `
         <a href="lindamar.html">Lindamar</a>
       </div>
     </li>
+    <li><a href="index.html#learn">Surf Lessons</a></li>
     <li><a href="surf-shops.html">Surf Shops</a></li>
     <li><a href="videos.html">Videos</a></li>
+    <li><a href="#">Store</a></li>
   </ul>
 </nav>`;
 
