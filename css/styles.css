@@ -646,39 +646,6 @@ footer p {
 
 .photo-gallery img:hover { opacity: 0.85; }
 
-/* SPONSORS */
-.sponsors-section {
-  padding: 3rem 4rem;
-  border-bottom: 1px solid var(--foam);
-  text-align: center;
-}
-
-.sponsors-section .section-label {
-  margin-bottom: 1.5rem;
-}
-
-.sponsors-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.sponsor-logo-placeholder {
-  width: 140px;
-  height: 60px;
-  background: var(--foam);
-  border: 1px solid #d0e4ec;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  color: #8aabb8;
-  letter-spacing: 0.05em;
-}
 
 @media (max-width: 768px) {
   .ob-layout { grid-template-columns: 1fr; }
