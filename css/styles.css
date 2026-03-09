@@ -29,9 +29,9 @@ body {
   top: 0; left: 0; right: 0;
   z-index: 100;
   background: var(--deep);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 0 2rem;
   height: 60px;
 }
@@ -52,6 +52,7 @@ body {
   display: flex;
   gap: 0.2rem;
   align-items: center;
+  justify-content: center;
 }
 
 #nav-placeholder nav ul li { position: relative; }
