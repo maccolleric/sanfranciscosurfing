@@ -1,9 +1,7 @@
-// Shared navigation HTML
 const navHTML = `
 <nav>
   <a class="logo" href="index.html"><img src="images/logo/SF Logo black.png" alt="SF Surfing" class="logo-img"></a>
   <ul>
-    <li><a href="index.html">Home</a></li>
     <li>
       <a href="#">Surf Spots ▾</a>
       <div class="dropdown">
