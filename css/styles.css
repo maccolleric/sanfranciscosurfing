@@ -24,7 +24,7 @@ body {
 }
 
 /* NAV */
-nav {
+#nav-placeholder nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
@@ -36,27 +36,27 @@ nav {
   height: 60px;
 }
 
-nav .logo {
+#nav-placeholder nav .logo {
   text-decoration: none;
   display: flex;
   align-items: center;
 }
 
-nav .logo-img {
+#nav-placeholder nav .logo-img {
   height: 40px;
   width: auto;
 }
 
-nav ul {
+#nav-placeholder nav ul {
   list-style: none;
   display: flex;
   gap: 0.2rem;
   align-items: center;
 }
 
-nav ul li { position: relative; }
+#nav-placeholder nav ul li { position: relative; }
 
-nav ul li a {
+#nav-placeholder nav ul li a {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
   color: var(--foam);
@@ -67,10 +67,10 @@ nav ul li a {
   transition: color 0.2s;
 }
 
-nav ul li a:hover { color: var(--sun); }
+#nav-placeholder nav ul li a:hover { color: var(--sun); }
 
 /* Dropdown */
-nav ul li .dropdown {
+#nav-placeholder nav ul li .dropdown {
   display: none;
   position: absolute;
   top: 100%;
@@ -81,9 +81,9 @@ nav ul li .dropdown {
   padding: 0.5rem 0;
 }
 
-nav ul li:hover .dropdown { display: block; }
+#nav-placeholder nav ul li:hover .dropdown { display: block; }
 
-nav ul li .dropdown a {
+#nav-placeholder nav ul li .dropdown a {
   display: block;
   padding: 0.5rem 1rem;
   white-space: nowrap;
@@ -413,6 +413,10 @@ footer .footer-logo {
   margin-bottom: 1rem;
 }
 
+footer nav {
+  position: static;
+}
+
 footer nav a {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
@@ -445,7 +449,7 @@ footer p {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  nav ul { display: none; }
+  #nav-placeholder nav ul { display: none; }
   .learn-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 4.5rem; }
 }
