@@ -435,6 +435,84 @@ footer p {
   margin-top: 1.5rem;
 }
 
+/* OCEAN BEACH PHOTO HERO */
+.ob-hero {
+  padding-top: 60px;
+  height: 70vh;
+  background:
+    linear-gradient(to bottom, rgba(6,30,46,0.4) 0%, rgba(6,30,46,0.7) 100%),
+    url('images/OB - 11-15-18 - Pacheco/DSC00901.JPG') center 40% / cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 3rem;
+  padding-left: 3rem;
+}
+
+.ob-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  color: var(--white);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.ob-hero .subtitle {
+  font-style: italic;
+  color: var(--foam);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.ob-hero .section-label {
+  margin-bottom: 0.5rem;
+}
+
+/* OB TWO-COLUMN LAYOUT */
+.ob-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  align-items: start;
+}
+
+.ob-sidebar h3 { margin-top: 0; }
+
+/* PHOTO GALLERY */
+.gallery-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin: 2.5rem 0 1rem;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px;
+}
+
+.photo-gallery img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.photo-gallery img:hover { opacity: 0.85; }
+
+@media (max-width: 768px) {
+  .ob-layout { grid-template-columns: 1fr; }
+  .ob-hero { padding-left: 1.5rem; }
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* BACK LINK */
 .back-link {
   font-family: 'Space Mono', monospace;
