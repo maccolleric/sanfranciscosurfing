@@ -11,9 +11,233 @@
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Surf Shops — San Francisco Surfing</title>
-  <meta name="description" content="Surf shops in and around San Francisco — boards, wetsuits, rentals, and repairs.">
+  <meta name="description" content="The Bay Area's guide to surf shops from Pacifica to Marin — boards, wetsuits, rentals, lessons, and local knowledge.">
   <link rel="icon" type="image/png" href="images/logo/SF Logo black.png">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── SURF SHOPS PAGE ── */
+
+    .ss-hero {
+      background: var(--deep);
+      color: var(--white);
+      padding: 7rem 4rem 5rem;
+      text-align: center;
+    }
+
+    .ss-hero .section-label {
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+
+    .ss-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .ss-hero .subheadline {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      color: var(--sand);
+      margin-bottom: 1.5rem;
+    }
+
+    .ss-hero .intro {
+      max-width: 720px;
+      margin: 0 auto;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #c8dde8;
+    }
+
+    /* Sticky region nav */
+    .ss-region-nav {
+      position: sticky;
+      top: 60px;
+      z-index: 90;
+      background: #f5efe8;
+      border-bottom: 1px solid #e0d4c4;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .ss-region-nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a4a3a;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-right: 1px solid #e0d4c4;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .ss-region-nav a:first-child { border-left: 1px solid #e0d4c4; }
+
+    .ss-region-nav a:hover {
+      background: var(--deep);
+      color: var(--sand);
+    }
+
+    /* Region sections */
+    .ss-region {
+      padding: 5rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ss-region + .ss-region {
+      border-top: 1px solid #e8ddd0;
+    }
+
+    .ss-region-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .ss-region-header .section-label {
+      margin-bottom: 0.5rem;
+    }
+
+    .ss-region-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      letter-spacing: 0.03em;
+      color: var(--deep);
+      margin-bottom: 1rem;
+    }
+
+    .ss-region-intro {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #4a4035;
+      max-width: 760px;
+      border-left: 3px solid var(--sand);
+      padding-left: 1.25rem;
+    }
+
+    /* Shop cards grid */
+    .ss-shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .ss-card {
+      background: #fdf8f3;
+      border: 1px solid #e8ddd0;
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .ss-card:hover {
+      box-shadow: 0 6px 24px rgba(6,30,46,0.1);
+      transform: translateY(-2px);
+    }
+
+    .ss-card-header {}
+
+    .ss-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--deep);
+      margin-bottom: 0.25rem;
+    }
+
+    .ss-card-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #7a6a5a;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .ss-card-meta span {
+      display: block;
+    }
+
+    .ss-card-divider {
+      border: none;
+      border-top: 1px solid #e8ddd0;
+    }
+
+    .ss-card-desc {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #3a3028;
+      flex: 1;
+    }
+
+    .ss-card-offers {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.03em;
+      color: #5a6e78;
+      line-height: 1.7;
+    }
+
+    .ss-card-offers strong {
+      display: block;
+      color: #3a4a52;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ss-card-link {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--ocean);
+      text-decoration: none;
+      border-bottom: 1px solid var(--wave);
+      padding-bottom: 1px;
+      align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .ss-card-link:hover {
+      color: var(--deep);
+      border-color: var(--deep);
+    }
+
+    /* Footer band */
+    .ss-footer-band {
+      background: var(--deep);
+      color: var(--white);
+      text-align: center;
+      padding: 3.5rem 2rem;
+    }
+
+    .ss-footer-band p {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--sand);
+    }
+
+    @media (max-width: 768px) {
+      .ss-hero { padding: 5rem 1.5rem 3.5rem; }
+      .ss-region { padding: 3.5rem 1.5rem; }
+      .ss-region-nav a { padding: 0.85rem 1rem; font-size: 0.65rem; }
+      .ss-shop-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -23,60 +247,233 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="nav-placeholder"></div>
 
-<div class="page-hero">
-  <h1>Surf Shops</h1>
-  <p class="subtitle">Where to gear up, rent boards, and get local intel</p>
+<!-- HERO -->
+<div class="ss-hero">
+  <p class="section-label">Bay Area Surf Shops</p>
+  <h1>Ride Local. Shop Local.</h1>
+  <p class="subheadline">The Bay Area's Guide to Surf Shops from Pacifica to Marin</p>
+  <p class="intro">From the fog-kissed breaks of Linda Mar to the wild swells of Stinson Beach and the legendary shore pound of Ocean Beach, the stretch of coastline between Pacifica and Marin County is home to some of California's most dedicated surf communities — and the shops that keep them in the water. Whether you're a first-timer looking to rent a board, a local hunting for a hand-shaped quiver addition, or just here for the vibe, these are the shops worth knowing.</p>
 </div>
 
-<div class="content-page">
-  <a href="index.html" class="back-link">Back to Home</a>
+<!-- STICKY REGION NAV -->
+<nav class="ss-region-nav">
+  <a href="#pacifica">Pacifica</a>
+  <a href="#san-francisco">San Francisco</a>
+  <a href="#marin">Marin County</a>
+</nav>
 
-  <p>The Bay Area has a solid handful of core surf shops that have been serving the local community for years. Whether you need to rent for your first lesson or buy a new stick, these are the places to go.</p>
-
-  <h3>San Francisco</h3>
-  <div class="shop-grid">
-    <div class="shop-card">
-      <h3>Aqua Surf Shop</h3>
-      <p>One of the original SF surf shops, located right near Ocean Beach. Full selection of boards, wetsuits, and accessories.</p>
-      <a href="https://www.aquasurfshop.com" target="_blank">aquasurfshop.com →</a>
-    </div>
-    <div class="shop-card">
-      <h3>Mollusk Surf Shop</h3>
-      <p>A beloved SF institution in the Inner Sunset. Known for a curated board selection and a strong community ethos.</p>
-      <a href="https://mollusksurfshop.com" target="_blank">mollusksurfshop.com →</a>
-    </div>
+<!-- PACIFICA -->
+<div id="pacifica" class="ss-region">
+  <div class="ss-region-header">
+    <p class="section-label">Region</p>
+    <h2>Pacifica</h2>
+    <p class="ss-region-intro">Pacifica punches above its weight as a surf town. Tucked just south of San Francisco along Highway 1, it's home to Linda Mar Beach — a mellow, beginner-friendly break that draws everyone from weekend warriors to lifelong locals. The surf shops here are the real deal: community anchors that have been waxing boards and fitting wetsuits for decades.</p>
   </div>
 
-  <h3 style="margin-top:2.5rem;">Pacifica</h3>
-  <div class="shop-grid">
-    <div class="shop-card">
-      <h3>NorCal Surf Shop</h3>
-      <p>Right at Lindamar beach — rentals, lessons, and repairs. Perfect starting point for beginners.</p>
-      <a href="http://norcalsurfshop.com" target="_blank">norcalsurfshop.com →</a>
+  <div class="ss-shop-grid">
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Nor Cal Surf Shop</h3>
+        <div class="ss-card-meta">
+          <span>5440 Pacific Coast Hwy, Pacifica · (650) 738-9283</span>
+          <span>Mon–Fri 9am–6pm | Sat–Sun 8am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Founded in 1991 by two Pacifica kids who grew up surfing and skating together, Nor Cal has become the town's unofficial headquarters for wave riders and skaters alike. With over 200 boards in stock, affordable rentals, group and private surf lessons, and a half pipe out back, this is the full package. Their branded hoodies and tees are practically a local uniform.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Board sales (200+), surfboard &amp; wetsuit rentals, paddle board &amp; bodyboard rentals, surf lessons (private &amp; group), skate gear, skate lessons, NorCal apparel
+      </div>
+      <a href="https://www.norcalsurfshop.com" target="_blank" class="ss-card-link">norcalsurfshop.com →</a>
     </div>
-    <div class="shop-card">
-      <h3>Sonlight Surf Shop</h3>
-      <p>A longtime Pacifica staple. Good selection of longboards and wetsuits for the colder Bay Area waters.</p>
-      <a href="http://sonlightsurfshop.com/" target="_blank">sonlightsurfshop.com →</a>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Sonlight Surfshop</h3>
+        <div class="ss-card-meta">
+          <span>575 Crespi Dr #1, Pacifica · (650) 359-5471</span>
+          <span>Mon–Fri 9:30am–5:30pm | Sat 9am–5:30pm | Sun 11am–5pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">One of the oldest surf shops in the Bay Area, Sonlight has been run by the Moreno family since 1985. Tucked just off Linda Mar Beach, it's the kind of shop where colorful boards hang from the ceiling and the owner knows your name. Expert advice, honest pricing, and a genuine love for the sport define this place. Their wetsuit trade-in program is a community gem.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        New &amp; used surfboard sales (Arrow, Harbour, Linden), wetsuits &amp; accessories (Rip Curl, Quiksilver, Patagonia), board &amp; wetsuit rentals, bodyboard &amp; bootie rentals, ding repair, wetsuit trade-in program
+      </div>
+      <a href="https://www.sonlightsurfshop.com" target="_blank" class="ss-card-link">sonlightsurfshop.com →</a>
     </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Traveler Surf Club &amp; Coastal Outpost</h3>
+        <div class="ss-card-meta">
+          <span>5450 Pacific Coast Hwy, Pacifica · (650) 735-9192</span>
+          <span>Mon–Fri 9am–6pm | Sat 8am–6pm | Sun 8am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Traveler is unlike any other shop on this list. Part surf club, part coastal boutique, it was born from a simple idea: surfers need somewhere warm to land after a session. Since 2016 it's offered hot outdoor showers, a cedar sauna, board storage lockers, and changing rooms — all steps from the water. The retail side is a lovingly curated mix of outdoor gear, books, jewelry, and apparel. Day passes available.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Surf lessons &amp; coaching, board rentals, surfboard storage, hot showers, cedar sauna, beach lockers, day passes, coastal lifestyle retail
+      </div>
+      <a href="https://www.travelersurfclub.com" target="_blank" class="ss-card-link">travelersurfclub.com →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- SAN FRANCISCO -->
+<div id="san-francisco" class="ss-region">
+  <div class="ss-region-header">
+    <p class="section-label">Region</p>
+    <h2>San Francisco</h2>
+    <p class="ss-region-intro">San Francisco's surf scene is anchored in the Outer Sunset — a foggy, windswept neighborhood that backs directly onto Ocean Beach, one of the most powerful and challenging urban surf breaks in the world. The shops here reflect that character: knowledgeable, no-nonsense, and deeply rooted in local culture. If you want to surf OB, these are the people to talk to first.</p>
   </div>
 
-  <h3 style="margin-top:2.5rem;">Half Moon Bay</h3>
-  <div class="shop-grid">
-    <div class="shop-card">
-      <h3>On The Beach Surf Shop</h3>
-      <p>Serving the Half Moon Bay and Mavericks area. Great local knowledge on the coastside breaks.</p>
-      <a href="https://www.onthebeachsurfshop.com" target="_blank">onthebeachsurfshop.com →</a>
+  <div class="ss-shop-grid">
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Mollusk Surf Shop</h3>
+        <div class="ss-card-meta">
+          <span>4500 Irving St, San Francisco · (415) 564-6300</span>
+          <span>Mon–Sat 10am–6:30pm | Sun 10am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Mollusk is an institution. Founded in 2005 to celebrate the craftspeople of surf culture — the shapers, artists, and filmmakers — this Outer Sunset shop is as much gallery as gear store. The space is warm and eccentric, filled with hand-shaped boards from renowned shapers like Christenson, Campbell Brothers, and Gary Hanel, alongside California-made clothing, surf zines, and sundries. If you want to understand what surf culture actually looks like, start here.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Hand-shaped surfboards (Christenson, Campbell Brothers, Tanner, Gary Hanel), wetsuits, California-made apparel, surf zines &amp; art, accessories
+      </div>
+      <a href="https://mollusksurfshop.com" target="_blank" class="ss-card-link">mollusksurfshop.com →</a>
     </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Aqua Surf Shop</h3>
+        <div class="ss-card-meta">
+          <span>3847 Judah St, San Francisco · (415) 242-9283</span>
+          <span>Daily 10am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">A no-frills, deeply local shop staffed by Ocean Beach surfers who actually surf Ocean Beach. Aqua has been helping people get in the water at OB for years — whether that means finding the right board from their wide new and used selection, renting gear for a day, or getting straight talk about conditions and spots. Come here when you want real advice, not a sales pitch.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        New &amp; used surfboard sales (Bic, Surftech, Boardworks), wetsuits &amp; accessories, 24-hour board &amp; wetsuit rentals, OB-ready apparel
+      </div>
+      <a href="https://www.aquasurfshop.com" target="_blank" class="ss-card-link">aquasurfshop.com →</a>
+    </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Pemulis Water &amp; Power</h3>
+        <div class="ss-card-meta">
+          <span>4051 Judah St, San Francisco · (510) 221-6855</span>
+          <span>Mon–Fri 12pm–7pm | Sat–Sun 11am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Pemulis is a genuine hidden gem. Located a block from Ocean Beach, it's equal parts surf shop, moto boutique, and vintage clothing store — and it pulls all three off with real style. You won't find these board brands anywhere else in the city: Gato Heroi, Tyler Warren, Ryan Lovelace, Alex Lopez. Pair that with True Ames fins, Crap Eyewear sunglasses, vintage motocross jerseys, and in-house candles, and you've got one of the most interesting retail spaces in SF.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Rare &amp; independent surfboards (Gato Heroi, Tyler Warren, Ryan Lovelace), True Ames fins, Rage traction pads, Mafia Bags, El Solitario moto gear, vintage apparel &amp; MX jerseys, Crap Eyewear, bespoke candles
+      </div>
+      <a href="https://www.pemuliswaterandpower.com" target="_blank" class="ss-card-link">pemuliswaterandpower.com →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MARIN COUNTY -->
+<div id="marin" class="ss-region">
+  <div class="ss-region-header">
+    <p class="section-label">Region</p>
+    <h2>Marin County</h2>
+    <p class="ss-region-intro">Marin's surf scene is quieter and wilder than its neighbors to the south. Stinson Beach offers one of the Bay Area's most scenic and accessible breaks, while the rugged coastline beyond draws experienced surfers chasing uncrowded peaks. The shops here match the energy: unhurried, community-minded, and steeped in decades of local surf history.</p>
   </div>
 
-  <h3 style="margin-top:2.5rem;">Marin</h3>
-  <div class="shop-grid">
-    <div class="shop-card">
-      <h3>Nor Cal Surf &amp; Skate</h3>
-      <p>Based in the North Bay, serving the Stinson Beach and Bolinas crowd.</p>
+  <div class="ss-shop-grid">
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Proof Lab Surf Shop</h3>
+        <div class="ss-card-meta">
+          <span>244 Shoreline Hwy, Mill Valley · (415) 380-8900</span>
+          <span>Daily 10am–6pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Proof Lab is the definitive Marin surf shop. With an absurdly good board selection, a full range of wetsuits and gear, a skate park out back, and surf camps for groms, it's a complete destination for anyone serious about ocean and skate culture. The staff are surfers first and salespeople second — expect honest input and deep product knowledge. Also check out Proof Lab Station next door for premium outdoor and lifestyle apparel.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Surfboards (extensive selection), wetsuits &amp; gear, skate gear &amp; skate park, surf camps, premium apparel, lifestyle &amp; outdoor retail (Proof Lab Station, 254 Shoreline Hwy)
+      </div>
+      <a href="https://www.prooflab.com" target="_blank" class="ss-card-link">prooflab.com →</a>
     </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>101 Surf Sports — San Rafael</h3>
+        <div class="ss-card-meta">
+          <span>115 3rd St, San Rafael · (415) 524-8492</span>
+          <span>Mon &amp; Thu–Sun 10am–5pm | Closed Tue–Wed</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">Situated right on the San Rafael Canal, 101 Surf Sports is the Bay Area's go-to for paddle sports and water sports of all kinds. They carry a premium lineup of SUP, wing foiling, e-foil, surfski, and kayak equipment, with brands like Jimmy Lewis, Starboard, Duotone, and Epic Kayaks. Lessons, rentals, and a dock make this a true on-the-water experience. Known for their welcoming energy and a staff that genuinely wants you to fall in love with ocean sports.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Paddleboarding (SUP), wing foiling, e-foil, surfski, kayaking, surfing gear, rentals, lessons, on-water dock, brands: Jimmy Lewis, Starboard, Duotone, SIC, Epic Kayaks
+      </div>
+      <a href="https://www.101surfsports.com" target="_blank" class="ss-card-link">101surfsports.com →</a>
+    </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Live Water Surf Shop — Stinson Beach</h3>
+        <div class="ss-card-meta">
+          <span>3448 Shoreline Hwy, Stinson Beach · (415) 868-0333</span>
+          <span>Daily 10am–5pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">The oldest surf shop north of San Francisco, Live Water has been part of the Stinson Beach landscape since 1978. Housed in the historic Avillas Barn, it carries everything you need for a day on the water — boards, wetsuits, bodyboards, SUPs, and beach essentials — with daily rentals for all of it. The legendary "No Sharks" gear (born after a 1981 Great White scare closed the beach) is still a must-buy. Demo boards from Rusty and Vernor available.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Surfboard &amp; wetsuit sales &amp; rentals, bodyboard &amp; SUP rentals, demo boards (Rusty, Vernor), beach clothing &amp; essentials, iconic No Sharks merchandise
+      </div>
+      <a href="https://www.livewatersurfshop.com" target="_blank" class="ss-card-link">livewatersurfshop.com →</a>
+    </div>
+
+    <div class="ss-card">
+      <div class="ss-card-header">
+        <h3>Live Water Surf Shop — Fairfax</h3>
+        <div class="ss-card-meta">
+          <span>Broadway, Fairfax · (415) 448-5994</span>
+          <span>Daily 10am–5pm</span>
+        </div>
+      </div>
+      <hr class="ss-card-divider">
+      <p class="ss-card-desc">The inland Marin sibling to the Stinson Beach original, the Fairfax shop brings the same aloha spirit to downtown Fairfax. A curated mix of surfboards, wetsuits, skate gear, and apparel, with a welcoming atmosphere that's particularly noted for being inclusive and female-surfer-friendly. A great first stop if you're heading out toward the coast via Sir Francis Drake Blvd.</p>
+      <div class="ss-card-offers">
+        <strong>Offers</strong>
+        Surfboards, wetsuits, skate gear, surf &amp; beach apparel, accessories
+      </div>
+      <a href="https://www.livewatersurfshop.com" target="_blank" class="ss-card-link">livewatersurfshop.com →</a>
+    </div>
+
   </div>
+</div>
+
+<!-- FOOTER BAND -->
+<div class="ss-footer-band">
+  <p>The ocean is for everyone. Find your shop. Get in the water.</p>
 </div>
 
 <div id="footer-placeholder"></div>
