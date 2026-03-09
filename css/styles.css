@@ -575,9 +575,8 @@ footer p {
 .ob-hero {
   padding-top: 60px;
   height: 70vh;
-  background:
-    linear-gradient(to bottom, rgba(6,30,46,0.4) 0%, rgba(6,30,46,0.7) 100%),
-    url('images/OB - 11-15-18 - Pacheco/DSC00901.JPG') center 40% / cover no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: flex-end;
   padding-bottom: 3rem;
