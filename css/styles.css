@@ -1000,9 +1000,94 @@ footer p {
 .back-link:hover { color: var(--sun); }
 .back-link::before { content: '← '; }
 
+/* HAMBURGER BUTTON — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  z-index: 110;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--foam);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+
+.nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* MOBILE */
 @media (max-width: 768px) {
-  #nav-placeholder nav ul { display: none; }
+  /* Show hamburger, hide nav links by default */
+  .nav-hamburger { display: flex; }
+
+  #nav-placeholder nav {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 60px;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+
+  #nav-placeholder nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.75rem 0 1.25rem;
+    gap: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  #nav-placeholder nav ul.nav-open {
+    display: flex;
+  }
+
+  #nav-placeholder nav ul li {
+    width: 100%;
+  }
+
+  #nav-placeholder nav ul li a {
+    display: block;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  /* Mobile dropdown for Surf Spots */
+  #nav-placeholder nav ul li .dropdown {
+    position: static;
+    display: none;
+    border-top: none;
+    border-left: 2px solid var(--sun);
+    padding: 0 0 0 1rem;
+    min-width: unset;
+    margin-bottom: 0.5rem;
+  }
+
+  #nav-placeholder nav ul li.dropdown-open .dropdown {
+    display: block;
+  }
+
+  #nav-placeholder nav ul li .dropdown a {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.68rem;
+    color: var(--sand);
+  }
+
   .learn-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 4.5rem; }
 }
