@@ -648,6 +648,151 @@ footer p {
   .photo-gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* STORE */
+.store-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.collections-grid .collection-card:first-child,
+.collections-grid .collection-card:nth-child(2) {
+  grid-column: span 1;
+}
+
+.collection-card {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+
+.collection-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.collection-card:hover .collection-img { opacity: 0.85; }
+
+.collection-placeholder-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  color: var(--deep);
+  opacity: 0.25;
+}
+
+.collection-info {
+  padding: 1rem 0 0.5rem;
+}
+
+.collection-info h3 {
+  font-size: 1.3rem;
+  margin: 0 0 0.25rem;
+  color: var(--deep);
+}
+
+.collection-count {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 0.4rem;
+  font-style: italic;
+}
+
+.collection-cta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--wave);
+  text-transform: uppercase;
+}
+
+.collection-card:hover .collection-cta { color: var(--sun); }
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.product-card {
+  display: block;
+}
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+
+.product-info {
+  padding: 0.75rem 0 0;
+}
+
+.product-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--foam);
+  margin-bottom: 0.25rem;
+}
+
+.product-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--sun);
+  letter-spacing: 0.05em;
+}
+
+/* COMING SOON */
+.store-coming-soon {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.coming-soon-card {
+  aspect-ratio: 1;
+  border: 1px dashed var(--foam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--foam);
+}
+
+.coming-soon-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .collections-grid { grid-template-columns: 1fr 1fr; }
+  .coming-soon-grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* BACK LINK */
 .back-link {
   font-family: 'Space Mono', monospace;
