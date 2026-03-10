@@ -14,6 +14,124 @@
   <meta name="description" content="Surf videos from San Francisco, Ocean Beach, Fort Point, and the Bay Area.">
   <link rel="icon" type="image/png" href="images/logo/SF Logo black.png">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* VIDEO PAGE FILTER */
+    .video-page-hero {
+      background: var(--deep);
+      padding: 5rem 2rem 0;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .video-page-hero .section-label { color: var(--sand); margin-bottom: 0.75rem; }
+
+    .video-page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-page-hero .subtitle {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--foam);
+      margin-bottom: 0;
+    }
+
+    /* FILTER BAR */
+    .video-filter-bar {
+      background: var(--deep);
+      padding: 1.75rem 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+
+    .filter-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7aaabb;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.6rem 1.25rem 1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -2px;
+    }
+
+    .filter-btn:hover { color: var(--foam); }
+
+    .filter-btn.active {
+      color: var(--sand);
+      border-bottom-color: var(--sun);
+    }
+
+    /* VIDEO GRID AREA */
+    .video-page-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .video-section {
+      margin-bottom: 4rem;
+    }
+
+    .video-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--foam);
+    }
+
+    .video-section.hidden { display: none; }
+
+    .video-empty {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      color: #999;
+      font-size: 1.05rem;
+      padding: 2rem 0;
+    }
+
+    .video-share {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--foam);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* HOW TO ADD comment block */
+    .video-add-note {
+      background: var(--foam);
+      border-left: 3px solid var(--wave);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #4a6a7a;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .video-filter-bar { gap: 0; padding: 1rem 1rem 0; }
+      .filter-btn { padding: 0.5rem 0.75rem 0.85rem; font-size: 0.62rem; }
+      .video-page-content { padding: 2.5rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -23,39 +141,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="nav-placeholder"></div>
 
-<div class="page-hero">
+<!-- HERO -->
+<div class="video-page-hero">
+  <p class="section-label">Watch</p>
   <h1>Videos</h1>
   <p class="subtitle">Surf footage from SF and the Bay Area</p>
 </div>
 
-<div class="content-page">
-  <a href="index.html" class="back-link">Back to Home</a>
+<!-- FILTER BAR -->
+<div class="video-filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="ocean-beach">Ocean Beach</button>
+  <button class="filter-btn" data-filter="linda-mar">Linda Mar</button>
+  <button class="filter-btn" data-filter="cronkite">Cronkite</button>
+  <button class="filter-btn" data-filter="fort-point">Fort Point</button>
+</div>
 
-  <p>Watch the Bay Area come alive on big swells. From the classic right-handers at Fort Point to the heavy close-outs at Ocean Beach, these clips capture what surfing in San Francisco looks and feels like.</p>
+<!-- VIDEO CONTENT -->
+<div class="video-page-content">
 
-  <h3>Ocean Beach</h3>
-  <div class="video-grid">
-    <div class="video-embed">
-      <!-- Replace src with your YouTube embed URL: https://www.youtube.com/embed/VIDEO_ID -->
-      <iframe src="https://www.youtube.com/embed/tFzrOMUFoUI" allowfullscreen title="Ocean Beach SF Surfing"></iframe>
-    </div>
-    <div class="video-embed">
-      <iframe src="https://www.youtube.com/embed/3nMHqasJOUo" allowfullscreen title="OB Big Swell"></iframe>
+  <div class="video-add-note">
+    To add a video: copy the YouTube embed ID, add a new <code>.video-embed</code> block inside the correct section, and set <code>data-location="ocean-beach"</code> (or linda-mar / cronkite / fort-point) on the section's parent <code>.video-section</code>.
+  </div>
+
+  <!-- OCEAN BEACH -->
+  <div class="video-section" data-location="ocean-beach">
+    <h2>Ocean Beach</h2>
+    <div class="video-grid">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/tFzrOMUFoUI" allowfullscreen title="Ocean Beach SF Surfing"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/3nMHqasJOUo" allowfullscreen title="OB Big Swell"></iframe>
+      </div>
     </div>
   </div>
 
-  <h3 style="margin-top: 2.5rem;">Fort Point</h3>
-  <div class="video-grid">
-    <div class="video-embed">
-      <iframe src="https://www.youtube.com/embed/4KCVG3CLWCE" allowfullscreen title="Fort Point Surfing"></iframe>
+  <!-- LINDA MAR -->
+  <div class="video-section" data-location="linda-mar">
+    <h2>Linda Mar</h2>
+    <p class="video-empty">No videos yet — check back soon or submit your footage.</p>
+  </div>
+
+  <!-- CRONKITE -->
+  <div class="video-section" data-location="cronkite">
+    <h2>Cronkite Beach</h2>
+    <p class="video-empty">No videos yet — check back soon or submit your footage.</p>
+  </div>
+
+  <!-- FORT POINT -->
+  <div class="video-section" data-location="fort-point">
+    <h2>Fort Point</h2>
+    <div class="video-grid">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/4KCVG3CLWCE" allowfullscreen title="Fort Point Surfing"></iframe>
+      </div>
     </div>
   </div>
 
-  <h3 style="margin-top: 2.5rem;">Have a video to share?</h3>
-  <p>If you've got footage from a Bay Area surf session, we'd love to feature it here. Update this page by adding a YouTube embed link — just replace the video ID in the iframe src above.</p>
+  <div class="video-share">
+    Got footage from a Bay Area surf session? Reach out and we'll add it to the list.
+  </div>
+
 </div>
 
 <div id="footer-placeholder"></div>
 <script src="js/layout.js"></script>
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const videoSections = document.querySelectorAll('.video-section');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide sections
+      videoSections.forEach(section => {
+        if (filter === 'all' || section.dataset.location === filter) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
