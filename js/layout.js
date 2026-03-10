@@ -14,6 +14,7 @@ const navHTML = `
         <a href="lindamar.html">Lindamar</a>
       </div>
     </li>
+    <li><a href="surf-finder.html">Surf Finder</a></li>
     <li><a href="surf-lessons.html">Surf Lessons</a></li>
     <li><a href="surf-shops.html">Surf Shops</a></li>
     <li><a href="videos.html">Videos</a></li>

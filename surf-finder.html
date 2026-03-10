@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WRWDH6KN');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surf Finder — San Francisco Surfing</title>
+  <meta name="description" content="Find the right SF Bay Area surf spot for your level. Answer a few questions and we'll point you in the right direction.">
+  <link rel="icon" type="image/png" href="images/logo/SF Logo black.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* SURF FINDER PAGE */
+    .sf-hero {
+      background: var(--deep);
+      padding: 7rem 2rem 4rem;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .sf-hero .section-label { color: var(--sand); margin-bottom: 0.75rem; }
+
+    .sf-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .sf-hero .subtitle {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--foam);
+    }
+
+    /* FORM WRAPPER */
+    .sf-form-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* QUESTION BLOCKS */
+    .sf-question {
+      margin-bottom: 2.5rem;
+    }
+
+    .sf-question-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+      color: var(--deep);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* RADIO / OPTION PILLS */
+    .sf-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .sf-options input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .sf-options label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid #c8dde8;
+      color: var(--ocean);
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+    }
+
+    .sf-options label:hover {
+      border-color: var(--wave);
+      background: var(--foam);
+    }
+
+    .sf-options input[type="radio"]:checked + label {
+      background: var(--deep);
+      border-color: var(--deep);
+      color: var(--white);
+    }
+
+    /* YES / NO TOGGLE */
+    .sf-toggle {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .sf-toggle input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .sf-toggle label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.75rem;
+      border: 1.5px solid #c8dde8;
+      color: var(--ocean);
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .sf-toggle label:hover {
+      border-color: var(--wave);
+      background: var(--foam);
+    }
+
+    .sf-toggle input[type="radio"]:checked + label {
+      background: var(--deep);
+      border-color: var(--deep);
+      color: var(--white);
+    }
+
+    /* SUBMIT */
+    .sf-submit {
+      margin-top: 1rem;
+    }
+
+    .sf-submit button {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--sun);
+      color: var(--deep);
+      font-weight: 700;
+      border: none;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sf-submit button:hover { background: var(--deep); color: var(--white); }
+
+    /* ERROR STATE */
+    .sf-error {
+      display: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: #b94040;
+      margin-top: 0.75rem;
+    }
+
+    /* RESULT PANEL */
+    .sf-result {
+      display: none;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .sf-result-card {
+      background: var(--deep);
+      color: var(--foam);
+      padding: 3rem;
+    }
+
+    .sf-result-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 0.75rem;
+    }
+
+    .sf-result-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .sf-result-body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #c8dde8;
+      margin-bottom: 2rem;
+    }
+
+    .sf-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sf-btn-primary {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--sun);
+      color: var(--deep);
+      font-weight: 700;
+      padding: 0.9rem 1.75rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+
+    .sf-btn-primary:hover { background: var(--foam); }
+
+    .sf-btn-secondary {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--foam);
+      padding: 0.9rem 1.75rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .sf-btn-secondary:hover { border-color: var(--foam); background: rgba(255,255,255,0.07); }
+
+    /* CONDITIONS BLOCK */
+    .sf-conditions-block {
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .sf-conditions-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+
+    .sf-conditions-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .sf-conditions-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--foam);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .sf-conditions-link:hover { color: var(--sun); border-color: var(--sun); }
+
+    /* RESET LINK */
+    .sf-reset {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .sf-reset:hover { color: var(--foam); }
+
+    @media (max-width: 520px) {
+      .sf-result-card { padding: 2rem 1.5rem; }
+      .sf-result-actions { flex-direction: column; }
+      .sf-btn-primary, .sf-btn-secondary { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRWDH6KN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="sf-hero">
+  <p class="section-label">Where Should You Surf?</p>
+  <h1>Surf Finder</h1>
+  <p class="subtitle">Answer a few questions and we'll point you in the right direction</p>
+</div>
+
+<!-- FORM -->
+<div class="sf-form-wrap" id="sf-form-section">
+  <form id="sf-form" novalidate>
+
+    <!-- Q1: Experience -->
+    <div class="sf-question">
+      <span class="sf-question-label">My surfing experience is</span>
+      <div class="sf-options">
+        <input type="radio" name="experience" id="exp-never" value="never">
+        <label for="exp-never">Never surfed before</label>
+
+        <input type="radio" name="experience" id="exp-beginner" value="beginner">
+        <label for="exp-beginner">Beginner</label>
+
+        <input type="radio" name="experience" id="exp-intermediate" value="intermediate">
+        <label for="exp-intermediate">Intermediate</label>
+
+        <input type="radio" name="experience" id="exp-advanced" value="advanced">
+        <label for="exp-advanced">Advanced</label>
+
+        <input type="radio" name="experience" id="exp-expert" value="expert">
+        <label for="exp-expert">Expert</label>
+      </div>
+    </div>
+
+    <!-- Q2: Rentals -->
+    <div class="sf-question">
+      <span class="sf-question-label">I need to rent a board and wetsuit</span>
+      <div class="sf-toggle">
+        <input type="radio" name="rentals" id="rentals-yes" value="yes">
+        <label for="rentals-yes">Yes</label>
+
+        <input type="radio" name="rentals" id="rentals-no" value="no">
+        <label for="rentals-no">No</label>
+      </div>
+    </div>
+
+    <!-- Q3: Lesson -->
+    <div class="sf-question">
+      <span class="sf-question-label">I need a lesson</span>
+      <div class="sf-toggle">
+        <input type="radio" name="lesson" id="lesson-yes" value="yes">
+        <label for="lesson-yes">Yes</label>
+
+        <input type="radio" name="lesson" id="lesson-no" value="no">
+        <label for="lesson-no">No</label>
+      </div>
+    </div>
+
+    <!-- Q4: Conditions -->
+    <div class="sf-question">
+      <span class="sf-question-label">I want to see conditions for my recommended spot</span>
+      <div class="sf-toggle">
+        <input type="radio" name="conditions" id="conditions-yes" value="yes">
+        <label for="conditions-yes">Yes</label>
+
+        <input type="radio" name="conditions" id="conditions-no" value="no">
+        <label for="conditions-no">No</label>
+      </div>
+    </div>
+
+    <!-- Q5: Board -->
+    <div class="sf-question">
+      <span class="sf-question-label">I typically ride a</span>
+      <div class="sf-options">
+        <input type="radio" name="board" id="board-shortboard" value="shortboard">
+        <label for="board-shortboard">Shortboard</label>
+
+        <input type="radio" name="board" id="board-fish" value="fish">
+        <label for="board-fish">Fish</label>
+
+        <input type="radio" name="board" id="board-mid" value="mid-length">
+        <label for="board-mid">Mid-length</label>
+
+        <input type="radio" name="board" id="board-longboard" value="longboard">
+        <label for="board-longboard">Longboard</label>
+      </div>
+    </div>
+
+    <div class="sf-submit">
+      <button type="submit">Let's Go!</button>
+      <p class="sf-error" id="sf-error">Please answer all questions before submitting.</p>
+    </div>
+
+  </form>
+</div>
+
+<!-- RESULT -->
+<div class="sf-result" id="sf-result">
+  <div class="sf-result-card" id="sf-result-card">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/layout.js"></script>
+<script>
+  // ─── SPOT DATA ──────────────────────────────────────────────────────────────
+  const spots = {
+    lindamar: {
+      name: 'Lindamar Beach',
+      location: 'Pacifica',
+      page: 'lindamar.html',
+      surflineUrl: 'https://www.surfline.com/surf-report/linda-mar-beach/5842041f4e65fad6a7708962',
+      magicseaweedUrl: 'https://magicseaweed.com/Linda-Mar-Surf-Report/255/',
+    },
+    oceanBeach: {
+      name: 'Ocean Beach',
+      location: 'San Francisco',
+      page: 'ocean-beach.html',
+      surflineUrl: 'https://www.surfline.com/surf-report/ocean-beach/5842041f4e65fad6a7708847',
+      magicseaweedUrl: 'https://magicseaweed.com/Ocean-Beach-Surf-Report/819/',
+    },
+    cronkite: {
+      name: 'Rodeo / Cronkite Beach',
+      location: 'Marin Headlands',
+      page: 'cronkite-rodeo-beach.html',
+      surflineUrl: 'https://www.surfline.com/surf-report/rodeo-beach/5842041f4e65fad6a7708d37',
+      magicseaweedUrl: 'https://magicseaweed.com/Rodeo-Beach-Surf-Report/4863/',
+    },
+    fortPoint: {
+      name: 'Fort Point',
+      location: 'Golden Gate',
+      page: 'ft-point.html',
+      surflineUrl: 'https://www.surfline.com/surf-report/fort-point/5842041f4e65fad6a770885b',
+      magicseaweedUrl: 'https://magicseaweed.com/Fort-Point-Surf-Report/4534/',
+    },
+  };
+
+  // ─── RECOMMENDATION LOGIC ───────────────────────────────────────────────────
+  function getRecommendation(exp, rentals, lesson, conditions, board) {
+    const needsLesson = lesson === 'yes';
+    const needsGear   = rentals === 'yes';
+    const wantsConditions = conditions === 'yes';
+
+    // --- Never surfed ---
+    if (exp === 'never' || needsLesson) {
+      return {
+        type: 'lesson',
+        heading: 'Start With A Lesson',
+        body: exp === 'never'
+          ? 'Before paddling out on your own, a lesson will make the difference between a frustrating experience and an incredible one. The Bay Area\'s best beginner instructors are based at Lindamar in Pacifica — the most forgiving break near SF.'
+          : 'A lesson will accelerate your progression faster than anything else. The Bay Area\'s best instructors are based at Lindamar in Pacifica.',
+        actions: [
+          { label: 'Find Surf Lessons', href: 'surf-lessons.html', primary: true },
+          needsGear ? { label: 'Rent Gear Too', href: 'surf-shops.html', primary: false } : null,
+        ].filter(Boolean),
+        spotList: spots.lindamar,
+        wantsConditions,
+      };
+    }
+
+    // --- Needs gear only ---
+    if (needsGear) {
+      let spotList = resolveSpots(exp, board);
+      let primarySpot = Array.isArray(spotList) ? spotList[0] : spotList;
+      return {
+        type: 'gear',
+        heading: 'Gear Up First',
+        body: `You'll want a board and wetsuit before heading to the water. Several shops near ${primarySpot.location} can set you up with a rental — most are open early and are steps from the beach.`,
+        actions: [
+          { label: 'Find Surf Shops', href: 'surf-shops.html', primary: true },
+          { label: `Go to ${primarySpot.name}`, href: primarySpot.page, primary: false },
+        ],
+        spotList,
+        wantsConditions,
+      };
+    }
+
+    // --- Has gear, has experience ---
+    let spotList = resolveSpots(exp, board);
+    let body = buildSpotBody(exp, board, spotList);
+    let primarySpot = Array.isArray(spotList) ? spotList[0] : spotList;
+    let secondarySpot = Array.isArray(spotList) ? spotList[1] : null;
+
+    let actions = [
+      { label: `${primarySpot.name} Guide`, href: primarySpot.page, primary: true },
+    ];
+    if (secondarySpot) {
+      actions.push({ label: `${secondarySpot.name} Guide`, href: secondarySpot.page, primary: false });
+    }
+
+    return {
+      type: 'spot',
+      heading: Array.isArray(spotList) ? `${primarySpot.name} or ${secondarySpot.name}` : primarySpot.name,
+      body,
+      actions,
+      spotList,
+      wantsConditions,
+    };
+  }
+
+  // Returns a single spot or array of spots
+  function resolveSpots(exp, board) {
+    const short = board === 'shortboard' || board === 'fish';
+    const long  = board === 'mid-length' || board === 'longboard';
+
+    if (exp === 'beginner')      return spots.lindamar;
+    if (exp === 'intermediate') {
+      if (short) return spots.cronkite;
+      return spots.lindamar; // mid/longboard → Lindamar
+    }
+    if (exp === 'advanced') {
+      if (short) return [spots.fortPoint, spots.oceanBeach];
+      return [spots.oceanBeach, spots.lindamar];
+    }
+    if (exp === 'expert')        return [spots.fortPoint, spots.oceanBeach];
+    return spots.lindamar;
+  }
+
+  function buildSpotBody(exp, board, spotList) {
+    const boardLabel = { shortboard: 'shortboard', fish: 'fish', 'mid-length': 'mid-length', longboard: 'longboard' }[board] || 'board';
+    const isArray = Array.isArray(spotList);
+    const primary = isArray ? spotList[0] : spotList;
+
+    if (primary === spots.lindamar) {
+      return `Lindamar in Pacifica is the right call for where you're at. The beach break is forgiving, the waves are consistent, and it's one of the best places in the Bay Area to log time in the water and build your skills on a ${boardLabel}.`;
+    }
+    if (primary === spots.oceanBeach && !isArray) {
+      return `Ocean Beach is calling. A powerful beach break on the western edge of SF, OB rewards surfers who know what they're doing. On a ${boardLabel} in the right swell window, it can be world-class. Check conditions before you go — the sandbars shift constantly.`;
+    }
+    if (primary === spots.cronkite) {
+      return `Rodeo / Cronkite Beach in the Marin Headlands is a solid pick for your level. It's more sheltered than OB, breaks over a pebble bottom, and can throw up punchy, hollow waves — ideal for a ${boardLabel}. Check the report before heading out.`;
+    }
+    if (primary === spots.fortPoint && isArray && spotList[1] === spots.oceanBeach) {
+      if (exp === 'expert') {
+        return `You're ready for the Bay Area's best. Fort Point fires up as a world-class right-hand reef directly under the Golden Gate Bridge when the swell lines up. Ocean Beach is always an option too — 3.5 miles of powerful beach break when the sandbars cooperate. Both reward your level on a ${boardLabel}.`;
+      }
+      return `Two great options for your level on a ${boardLabel}. Fort Point is a unique right-hand reef break under the Golden Gate — technical and powerful when it's on. Ocean Beach is the workhorse: consistent, punchy, and always worth a check. Go where the conditions are best on the day.`;
+    }
+    if (primary === spots.oceanBeach && isArray && spotList[1] === spots.lindamar) {
+      return `Ocean Beach is a strong pick on a ${boardLabel} — mid-lengths and longboards can find long, workable walls at OB when the swell angle is right. If it's too big or blown out, Lindamar in Pacifica is a reliable fallback with more forgiving conditions.`;
+    }
+    return '';
+  }
+
+  // ─── RENDER RESULT ──────────────────────────────────────────────────────────
+  function renderResult(rec) {
+    const card = document.getElementById('sf-result-card');
+    const spotArr = Array.isArray(rec.spotList) ? rec.spotList : (rec.spotList ? [rec.spotList] : []);
+    const primarySpot = spotArr[0] || null;
+    const locationLabel = primarySpot ? primarySpot.location : '';
+
+    let actionsHTML = rec.actions.map(a =>
+      `<a href="${a.href}" class="${a.primary ? 'sf-btn-primary' : 'sf-btn-secondary'}">${a.label}</a>`
+    ).join('');
+
+    let conditionsHTML = '';
+    if (rec.wantsConditions && spotArr.length) {
+      const linksHTML = spotArr.map(s => `
+        <div style="margin-bottom:0.75rem;">
+          <p class="sf-conditions-label" style="margin-bottom:0.4rem;">${s.name}</p>
+          <div class="sf-conditions-links">
+            <a href="${s.surflineUrl}" target="_blank" rel="noopener" class="sf-conditions-link">Surfline →</a>
+            <a href="${s.magicseaweedUrl}" target="_blank" rel="noopener" class="sf-conditions-link">Magic Seaweed →</a>
+          </div>
+        </div>`).join('');
+      conditionsHTML = `
+        <div class="sf-conditions-block">
+          <p class="sf-conditions-label" style="margin-bottom:1rem;">Check conditions</p>
+          ${linksHTML}
+        </div>`;
+    }
+
+    card.innerHTML = `
+      <p class="sf-result-tag">${locationLabel ? locationLabel + ' · ' : ''}Your Recommendation</p>
+      <h2 class="sf-result-heading">${rec.heading}</h2>
+      <p class="sf-result-body">${rec.body}</p>
+      <div class="sf-result-actions">${actionsHTML}</div>
+      ${conditionsHTML}
+      <button class="sf-reset" id="sf-reset-btn">← Start over</button>
+    `;
+
+    document.getElementById('sf-reset-btn').addEventListener('click', resetForm);
+  }
+
+  // ─── FORM LOGIC ─────────────────────────────────────────────────────────────
+  function getVal(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  }
+
+  function resetForm() {
+    document.getElementById('sf-form').reset();
+    document.getElementById('sf-result').style.display = 'none';
+    document.getElementById('sf-form-section').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('sf-form-section').offsetTop - 80, behavior: 'smooth' });
+  }
+
+  document.getElementById('sf-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const exp        = getVal('experience');
+    const rentals    = getVal('rentals');
+    const lesson     = getVal('lesson');
+    const conditions = getVal('conditions');
+    const board      = getVal('board');
+
+    // Validate all answered
+    if (!exp || !rentals || !lesson || !conditions || !board) {
+      document.getElementById('sf-error').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('sf-error').style.display = 'none';
+
+    const rec = getRecommendation(exp, rentals, lesson, conditions, board);
+
+    // Swap form for result
+    document.getElementById('sf-form-section').style.display = 'none';
+    const resultEl = document.getElementById('sf-result');
+    resultEl.style.display = 'block';
+    renderResult(rec);
+
+    window.scrollTo({ top: resultEl.offsetTop - 80, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
