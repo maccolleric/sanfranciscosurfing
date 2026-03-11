@@ -763,6 +763,73 @@ footer p {
 
 .ob-lesson-link:hover { color: var(--sun); }
 
+/* OB CONDITIONS SECTION */
+.ob-conditions-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--foam);
+}
+
+.ob-conditions-section h2 { margin-bottom: 0.5rem; }
+
+.ob-conditions-intro {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.ob-conditions-embed {
+  width: 100%;
+  border: 1px solid var(--foam);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: var(--foam);
+  min-height: 500px;
+}
+
+.ob-conditions-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ob-conditions-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--deep);
+  color: var(--foam);
+  text-decoration: none;
+  padding: 1.25rem 1.5rem;
+  transition: background 0.2s;
+}
+
+.ob-conditions-link:hover { background: var(--ocean); }
+
+.ob-conditions-link-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 0.3rem;
+}
+
+.ob-conditions-link-sub {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #8ab0c0;
+}
+
+@media (max-width: 768px) {
+  .ob-conditions-cta { grid-template-columns: 1fr; }
+  .ob-conditions-embed { min-height: 400px; }
+  .ob-conditions-embed iframe { height: 400px; }
+}
+
 /* OB VIDEOS SECTION */
 .ob-videos-section {
   max-width: 1100px;
