@@ -70,7 +70,168 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<!-- CURRENT CONDITIONS -->
+<div class="ob-conditions-section">
+  <p class="section-label">Right Now</p>
+  <h2>Current Conditions</h2>
+
+  <div class="buoy-widget" id="buoy-widget">
+    <div class="buoy-loading" id="buoy-loading">
+      <span class="buoy-loading-dot"></span>
+      <span class="buoy-loading-dot"></span>
+      <span class="buoy-loading-dot"></span>
+      <span class="buoy-loading-text">Fetching buoy data…</span>
+    </div>
+    <div class="buoy-data" id="buoy-data" style="display:none;">
+      <div class="buoy-stats">
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-wvht">—</div>
+          <div class="buoy-stat-label">Wave Height</div>
+        </div>
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-dpd">—</div>
+          <div class="buoy-stat-label">Swell Period</div>
+        </div>
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-mwd">—</div>
+          <div class="buoy-stat-label">Swell Direction</div>
+        </div>
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-wspd">—</div>
+          <div class="buoy-stat-label">Wind Speed</div>
+        </div>
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-wdir">—</div>
+          <div class="buoy-stat-label">Wind Direction</div>
+        </div>
+        <div class="buoy-stat">
+          <div class="buoy-stat-value" id="buoy-wtmp">—</div>
+          <div class="buoy-stat-label">Water Temp</div>
+        </div>
+      </div>
+      <p class="buoy-summary" id="buoy-summary"></p>
+      <div class="buoy-meta">
+        <span id="buoy-timestamp"></span>
+        <span class="buoy-meta-sep">·</span>
+        <span>NOAA Buoy 46026 — 25nm offshore SF</span>
+      </div>
+    </div>
+    <div class="buoy-error" id="buoy-error" style="display:none;">
+      Unable to load buoy data right now. Check conditions directly on Surfline or Magic Seaweed below.
+    </div>
+  </div>
+
+  <div class="ob-conditions-cta">
+    <a href="https://www.surfline.com/surf-report/rodeo-beach/5842041f4e65fad6a7708d37" target="_blank" rel="noopener" class="ob-conditions-link">
+      <span class="ob-conditions-link-label">Full Forecast on Surfline →</span>
+      <span class="ob-conditions-link-sub">Wave height · Wind · Swell period</span>
+    </a>
+    <a href="https://magicseaweed.com/Rodeo-Beach-Surf-Report/4863/" target="_blank" rel="noopener" class="ob-conditions-link">
+      <span class="ob-conditions-link-label">Magic Seaweed Forecast →</span>
+      <span class="ob-conditions-link-sub">7-day forecast · Surf rating · Charts</span>
+    </a>
+  </div>
+</div>
+
 <div id="footer-placeholder"></div>
 <script src="js/layout.js"></script>
+<script>
+(function() {
+  const BUOY_URL = 'https://www.ndbc.noaa.gov/data/realtime2/46026.txt';
+
+  function degToCompass(deg) {
+    if (deg === null) return '—';
+    const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+    return dirs[Math.round(deg / 22.5) % 16];
+  }
+
+  function mToFt(m) { return (m * 3.28084).toFixed(1); }
+  function msToKnots(ms) { return (ms * 1.94384).toFixed(1); }
+  function cToF(c) { return ((c * 9/5) + 32).toFixed(0); }
+
+  function parseBuoy(text) {
+    const lines = text.trim().split('\n');
+    const dataLine = lines[2];
+    if (!dataLine) return null;
+    const cols = dataLine.trim().split(/\s+/);
+    const val = (i) => (cols[i] === 'MM' || cols[i] === undefined) ? null : parseFloat(cols[i]);
+    return {
+      year: cols[0], month: cols[1], day: cols[2], hour: cols[3], min: cols[4],
+      wdir: val(5), wspd: val(6), gst: val(7), wvht: val(8),
+      dpd: val(9), apd: val(10), mwd: val(11), wtmp: val(14),
+    };
+  }
+
+  function buildSummary(d) {
+    const lines = [];
+    const wvhtFt = d.wvht !== null ? parseFloat(mToFt(d.wvht)) : null;
+    if (wvhtFt !== null) {
+      let size;
+      if (wvhtFt < 2)       size = 'small, ankle-to-knee-high surf';
+      else if (wvhtFt < 4)  size = 'waist-to-chest-high surf';
+      else if (wvhtFt < 6)  size = 'head-high surf';
+      else if (wvhtFt < 9)  size = 'overhead surf';
+      else if (wvhtFt < 13) size = 'double-overhead surf';
+      else                   size = 'XXL surf';
+      const period = d.dpd !== null ? ` with a ${d.dpd.toFixed(0)}-second dominant swell period` : '';
+      const swellDir = d.mwd !== null ? ` out of the ${degToCompass(d.mwd)}` : '';
+      lines.push(`Buoy 46026 is reading ${size} (${wvhtFt}ft)${period}${swellDir}. Rodeo and Cronkite are slightly more sheltered — expect conditions a touch smaller than the open ocean reading.`);
+    }
+    if (d.wspd !== null) {
+      const kts = parseFloat(msToKnots(d.wspd));
+      const gstKts = d.gst !== null ? parseFloat(msToKnots(d.gst)) : null;
+      let windDesc;
+      if (kts < 5)        windDesc = 'light winds';
+      else if (kts < 10)  windDesc = 'a gentle breeze';
+      else if (kts < 15)  windDesc = 'moderate wind';
+      else if (kts < 20)  windDesc = 'fresh wind';
+      else                windDesc = 'strong winds';
+      const windDir = d.wdir !== null ? ` from the ${degToCompass(d.wdir)}` : '';
+      const gustNote = gstKts !== null && gstKts > kts + 3 ? `, gusting to ${gstKts}kts` : '';
+      lines.push(`Wind is ${windDesc}${windDir} at ${kts}kts${gustNote}.`);
+      if (d.wdir !== null && d.mwd !== null) {
+        const diff = Math.abs(d.wdir - d.mwd);
+        const n = diff > 180 ? 360 - diff : diff;
+        if (n > 120)      lines.push('Wind is offshore — conditions may be clean.');
+        else if (n > 60)  lines.push('Wind is cross-shore — expect some chop.');
+        else               lines.push('Wind is onshore — expect choppy, bumpy surf.');
+      }
+    }
+    if (d.wtmp !== null) {
+      lines.push(`Water temperature is ${cToF(d.wtmp)}°F — full suit and booties required.`);
+    }
+    return lines.join(' ');
+  }
+
+  async function loadBuoy() {
+    try {
+      const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(BUOY_URL);
+      const res = await fetch(proxyUrl);
+      if (!res.ok) throw new Error('fetch failed');
+      const text = await res.text();
+      const d = parseBuoy(text);
+      if (!d) throw new Error('parse failed');
+
+      const show = (id, val) => { document.getElementById(id).textContent = val; };
+      show('buoy-wvht', d.wvht !== null ? `${mToFt(d.wvht)}ft` : '—');
+      show('buoy-dpd',  d.dpd  !== null ? `${d.dpd.toFixed(0)}s` : '—');
+      show('buoy-mwd',  d.mwd  !== null ? degToCompass(d.mwd) : '—');
+      show('buoy-wspd', d.wspd !== null ? `${msToKnots(d.wspd)}kts` : '—');
+      show('buoy-wdir', d.wdir !== null ? degToCompass(d.wdir) : '—');
+      show('buoy-wtmp', d.wtmp !== null ? `${cToF(d.wtmp)}°F` : '—');
+      document.getElementById('buoy-summary').textContent = buildSummary(d);
+      document.getElementById('buoy-timestamp').textContent = `Updated ${d.month}/${d.day} at ${d.hour}:${d.min} UTC`;
+
+      document.getElementById('buoy-loading').style.display = 'none';
+      document.getElementById('buoy-data').style.display = 'block';
+    } catch(e) {
+      document.getElementById('buoy-loading').style.display = 'none';
+      document.getElementById('buoy-error').style.display = 'block';
+    }
+  }
+
+  loadBuoy();
+})();
+</script>
 </body>
 </html>
