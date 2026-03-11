@@ -763,6 +763,116 @@ footer p {
 
 .ob-lesson-link:hover { color: var(--sun); }
 
+/* BUOY WIDGET */
+.buoy-widget {
+  background: var(--deep);
+  color: var(--foam);
+  padding: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.buoy-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.buoy-loading-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--wave);
+  border-radius: 50%;
+  animation: buoyPulse 1.2s ease-in-out infinite;
+}
+.buoy-loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.buoy-loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes buoyPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.buoy-loading-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-left: 0.5rem;
+}
+
+.buoy-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 2rem;
+}
+
+.buoy-stat {
+  text-align: center;
+  padding: 0 1rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.buoy-stat:first-child { padding-left: 0; }
+.buoy-stat:last-child  { border-right: none; padding-right: 0; }
+
+.buoy-stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  color: var(--sun);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.buoy-stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
+  opacity: 0.75;
+}
+
+.buoy-summary {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #c8dde8;
+  margin-bottom: 1.5rem;
+}
+
+.buoy-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(232,244,248,0.35);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.buoy-meta-sep { opacity: 0.5; }
+
+.buoy-error {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-style: italic;
+  color: var(--sand);
+  padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .buoy-widget { padding: 1.5rem; }
+  .buoy-stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem 0; border-bottom: none; padding-bottom: 0; margin-bottom: 1.5rem; }
+  .buoy-stat { border-right: none; padding: 0; }
+  .buoy-stat-value { font-size: 1.8rem; }
+}
+
 /* OB CONDITIONS SECTION */
 .ob-conditions-section {
   max-width: 1100px;
