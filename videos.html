@@ -151,6 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- FILTER BAR -->
 <div class="video-filter-bar">
   <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="san-francisco">San Francisco</button>
   <button class="filter-btn" data-filter="ocean-beach">Ocean Beach</button>
   <button class="filter-btn" data-filter="linda-mar">Linda Mar</button>
   <button class="filter-btn" data-filter="cronkite">Cronkite</button>
@@ -161,7 +162,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="video-page-content">
 
   <div class="video-add-note">
-    To add a video: copy the YouTube embed ID, add a new <code>.video-embed</code> block inside the correct section, and set <code>data-location="ocean-beach"</code> (or linda-mar / cronkite / fort-point) on the section's parent <code>.video-section</code>.
+    To add a video: use a YouTube embed ID (youtube.com/embed/ID) or Vimeo player URL (player.vimeo.com/video/ID). Add a new <code>.video-embed</code> block inside the correct section, and set <code>data-location</code> on the parent <code>.video-section</code> (e.g. san-francisco / ocean-beach / linda-mar / cronkite / fort-point).
+  </div>
+
+  <!-- SAN FRANCISCO -->
+  <div class="video-section" data-location="san-francisco">
+    <h2>San Francisco</h2>
+    <div class="video-grid">
+      <div class="video-embed">
+        <iframe src="https://player.vimeo.com/video/198087851" allowfullscreen title="San Francisco Surfing"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://player.vimeo.com/video/204372539" allowfullscreen title="San Francisco Surfing"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://player.vimeo.com/video/252747549" allowfullscreen title="San Francisco Surfing"></iframe>
+      </div>
+    </div>
   </div>
 
   <!-- OCEAN BEACH -->
